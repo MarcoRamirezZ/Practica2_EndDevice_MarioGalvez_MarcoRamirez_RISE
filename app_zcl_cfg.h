@@ -108,27 +108,29 @@
 #define ZDP_PARENT_ANNCE_RSP_CLUSTER_ID    (0x801f)
 
 /* Profile 'HA' */
-#define HA_PROFILE_ID    (0x0104)
-#define HA_BASIC_CLUSTER_ID    (0x0000)
-#define HA_IDENTIFY_CLUSTER_ID    (0x0003)
-#define HA_GROUPS_CLUSTER_ID    (0x0004)
-#define HA_SCENES_CLUSTER_ID    (0x0005)
-#define HA_ONOFF_CLUSTER_ID    (0x0006)
-#define HA_LEVELCONTROL_CLUSTER_ID    (0x0008)
-#define HA_COLOURCONTROL_CLUSTER_ID    (0x0300)
-#define HA_OCCUPANCYSENSING_CLUSTER_ID    (0x0406)
-#define HA_ILLUMINANCEMEASUREMENT_CLUSTER_ID    (0x0400)
-#define HA_DEFAULT_CLUSTER_ID    (0xffff)
-#define HA_OTA_CLUSTER_ID    (0x0019)
-#define HA_TIME_CLUSTER_ID    (0x000a)
+#define HA_PROFILE_ID                         (0x0104)
+#define HA_BASIC_CLUSTER_ID                   (0x0000)
+#define HA_IDENTIFY_CLUSTER_ID                (0x0003)
+#define HA_GROUPS_CLUSTER_ID                  (0x0004)
+#define HA_SCENES_CLUSTER_ID                  (0x0005)
+#define HA_ONOFF_CLUSTER_ID                   (0x0006)
+#define HA_LEVELCONTROL_CLUSTER_ID            (0x0008)
+#define HA_COLOURCONTROL_CLUSTER_ID           (0x0300)
+#define HA_OCCUPANCYSENSING_CLUSTER_ID        (0x0406)
+#define HA_ILLUMINANCEMEASUREMENT_CLUSTER_ID  (0x0400)
+#define HA_DEFAULT_CLUSTER_ID    			  (0xffff)
+#define HA_OTA_CLUSTER_ID    				  (0x0019)
+#define HA_TIME_CLUSTER_ID    				  (0x000a)
+#define HA_TEMPMEASUREMENT_CLUSTER_ID         (0x0402)
 
 
 
 /* Node 'Router' */
 
 /* Endpoints */
-#define ROUTER_ZDO_ENDPOINT    (0)
+#define ROUTER_ZDO_ENDPOINT            (0)
 #define ROUTER_APPLICATION_ENDPOINT    (1)
+#define ROUTER_TEMPERATURE_ENDPOINT    (2)//added for P2
 /****************************************************************************/
 /***        Type Definitions                                              ***/
 /****************************************************************************/

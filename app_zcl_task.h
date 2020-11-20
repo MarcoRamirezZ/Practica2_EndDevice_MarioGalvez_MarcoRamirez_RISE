@@ -46,6 +46,7 @@ PUBLIC void APP_ZCL_vEventHandler(ZPS_tsAfEvent *psStackEvent);
 /****************************************************************************/
 
 extern tsZHA_BaseDevice sBaseDevice;
+extern tsZHA_BaseDevice sBaseDeviceTemperature;
 
 #endif /* APP_ZCL_TASK_H_ */
 

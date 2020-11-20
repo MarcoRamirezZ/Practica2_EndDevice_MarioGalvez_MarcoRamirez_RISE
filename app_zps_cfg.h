@@ -186,7 +186,7 @@
 /* ZPS AF Layer Configuration Parameters */
 /*****************************************************************************/
 
-#define AF_SIMPLE_DESCRIPTOR_TABLE_SIZE    2
+#define AF_SIMPLE_DESCRIPTOR_TABLE_SIZE    3/*2 Added 3th for termperature measurement*/
 
 #define AF_ENABLE_USER_DESCRIPTOR          FALSE
 
@@ -386,7 +386,7 @@ join. */
 
 /*! CHILD TABLE SIZE */
 /*! Size of the persisted sub-table of the active Neighbour table. */
-/*! Entries for the node’s parent and immediate children */
+/*! Entries for the nodeï¿½s parent and immediate children */
 #define ZPS_CHILD_TABLE_SIZE          5
 
 /****************************************************************************/

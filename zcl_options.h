@@ -33,7 +33,7 @@
 #define ZCL_MANUFACTURER_CODE                                0x1037
 
 /* Number of endpoints supported by this device */
-#define ZCL_NUMBER_OF_ENDPOINTS                              1
+#define ZCL_NUMBER_OF_ENDPOINTS                              2/*1 we added another one for the temp measurement*/
 
 /* ZCL has all cooperative task */
 #define COOPERATIVE
@@ -72,15 +72,22 @@ enum
 /****************************************************************************/
 #define CLD_BASIC
 #define BASIC_SERVER
+#define BASIC_CLIENT
 
 #define CLD_IDENTIFY
 #define IDENTIFY_SERVER
+#define IDENTIFY_CLIENT
 
 #define CLD_GROUPS
 #define GROUPS_SERVER
+#define GROUPS_CLIENT
 
 #define CLD_ONOFF
 #define ONOFF_SERVER
+#define ONOFF_CLIENT
+
+#define CLD_TEMPERATURE_MEASUREMENT
+#define TEMPERATURE_MEASUREMENT_SERVER
 
 #ifdef BUILD_OTA
 #define CLD_OTA
@@ -142,6 +149,14 @@ enum
 /****************************************************************************/
 
 /****************************************************************************/
+/* Temperature Measurement Cluster - Optional Attributes */
+/* */
+/* Add the following #define's to your zcl_options.h file to add optional */
+/* attributes to the time cluster. */
+/****************************************************************************/
+#define CLD_TEMPMEAS_ATTR_TOLERANCE
+
+/****************************************************************************/
 /*             Basic Cluster - Optional Commands                            */
 /*                                                                          */
 /* Add the following #define's to your zcl_options.h file to add optional   */
@@ -155,6 +170,8 @@ enum
 /* Add the following #define's to your zcl_options.h file to add optional   */
 /* attributes to the OTA cluster.                                          */
 /****************************************************************************/
+#define CLD_ONOFF_CMD_OFF_WITH_EFFECT
+
 #ifdef  CLD_OTA
     #define OTA_DEMO_TIMINGS                        // define this fior the fast timings for edemo purposes
     #define OTA_ACKS_ON                             FALSE

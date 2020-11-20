@@ -46,8 +46,10 @@ typedef struct _zps_tsAplAfSimpleDescCont
 /****************************************************************************/
 
 
-PUBLIC uint8 u8MaxZpsConfigEp = 1 ;
-PUBLIC uint8 au8EpMapPresent[1] = { 1  }; 
+//PUBLIC uint8 u8MaxZpsConfigEp = 1 ;
+//PUBLIC uint8 au8EpMapPresent[1] = { 1  };
+PUBLIC uint8 u8MaxZpsConfigEp = 2;
+PUBLIC uint8 au8EpMapPresent[2] = { ROUTER_APPLICATION_ENDPOINT, ROUTER_TEMPERATURE_ENDPOINT };
 
 
 
@@ -70,7 +72,15 @@ PRIVATE uint8 s_au8Endpoint1InputClusterDiscFlags[1] = { 0x0f };
 PRIVATE const uint16 s_au16Endpoint1OutputClusterList[4] = { 0x0000, 0x0004, 0x0003, 0x0006, };
 PRIVATE uint8 s_au8Endpoint1OutputClusterDiscFlags[1] = { 0x00 };
 
-PUBLIC zps_tsAplAfSimpleDescCont s_asSimpleDescConts[2] = {
+PRIVATE const uint16 s_au16Endpoint2InputClusterList[6] = { 0x0000, 0x0004, 0x0003, 0x0006, HA_TEMPMEASUREMENT_CLUSTER_ID , 0xffff, };
+PRIVATE const PDUM_thAPdu s_ahEndpoint2InputClusterAPdus[6] = { apduZCL, apduZCL, apduZCL, apduZCL, apduZCL, apduZCL, };
+PRIVATE uint8 s_au8Endpoint2InputClusterDiscFlags[1] = { 0x1f };
+
+PRIVATE const uint16 s_au16Endpoint2OutputClusterList[5] = { 0x0000, 0x0004, 0x0003, 0x0006, HA_TEMPMEASUREMENT_CLUSTER_ID, };
+PRIVATE uint8 s_au8Endpoint2OutputClusterDiscFlags[1] = { 0x08 };
+
+PUBLIC zps_tsAplAfSimpleDescCont s_asSimpleDescConts[3] =
+{
     {
         {
             0x0000,
@@ -103,6 +113,22 @@ PUBLIC zps_tsAplAfSimpleDescCont s_asSimpleDescConts[2] = {
         s_ahEndpoint1InputClusterAPdus,
         1
     },
+	{
+	   {
+	       0x0104,
+	       0,
+	       1,
+	       1,
+	       6,
+	       5,
+		   (uint16*)s_au16Endpoint2InputClusterList,
+		   (uint16*)s_au16Endpoint2OutputClusterList,
+	       s_au8Endpoint2InputClusterDiscFlags,
+	       s_au8Endpoint2OutputClusterDiscFlags,
+	     },
+	     s_ahEndpoint2InputClusterAPdus,
+	    1
+	 }
 };
 
 /* Node Descriptor */

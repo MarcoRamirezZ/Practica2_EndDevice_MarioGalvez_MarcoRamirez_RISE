@@ -76,6 +76,7 @@ PRIVATE void APP_vZCL_DeviceSpecific_Init(void);
 /****************************************************************************/
 
 tsZHA_BaseDevice sBaseDevice;
+tsZHA_BaseDevice sBaseDeviceTemperature;
 
 /****************************************************************************/
 /***        Local Variables                                               ***/
@@ -119,6 +120,15 @@ PUBLIC void APP_ZCL_vInitialise(void)
     if (eZCL_Status != E_ZCL_SUCCESS)
     {
             DBG_vPrintf(TRACE_ZCL, "Error: eZHA_RegisterBaseDeviceEndPoint: %02x\r\r\n", eZCL_Status);
+    }
+
+    /* Register Temperature EndPoint */
+    eZCL_Status =  eZHA_RegisterBaseDeviceEndPoint(ROUTER_TEMPERATURE_ENDPOINT,
+                                                              &APP_ZCL_cbEndpointCallback,
+                                                              &sBaseDeviceTemperature);
+    if (eZCL_Status != E_ZCL_SUCCESS)
+    {
+              DBG_vPrintf(TRACE_ZCL, "Error: eZHA_RegisterBaseDeviceEndPoint(Temperature): %02x\r\n", eZCL_Status);
     }
 
     APP_vZCL_DeviceSpecific_Init();
@@ -229,7 +239,6 @@ PUBLIC void APP_ZCL_vEventHandler(ZPS_tsAfEvent *psStackEvent)
     vZCL_EventHandler(&sCallBackEvent);
 
 }
-
 
 /****************************************************************************/
 /***        Local Functions                                               ***/
@@ -581,6 +590,9 @@ PRIVATE void APP_vHandleClusterCustomCommands(tsZCL_CallBackEvent *psEvent)
                 eZHA_RegisterBaseDeviceEndPoint(ROUTER_APPLICATION_ENDPOINT,
                                                 &APP_ZCL_cbEndpointCallback,
                                                 &sBaseDevice);
+                eZHA_RegisterBaseDeviceEndPoint(ROUTER_TEMPERATURE_ENDPOINT,
+                                                        &APP_ZCL_cbEndpointCallback,
+                                                        &sBaseDeviceTemperature);
             }
             #ifdef CLD_OTA
                 vAppInitOTA();
@@ -643,15 +655,21 @@ PRIVATE void APP_vZCL_DeviceSpecific_Init(void)
     FLib_MemCpy(sBaseDevice.sBasicServerCluster.au8ModelIdentifier, "BDB-Router", CLD_BAS_MODEL_ID_SIZE);
     FLib_MemCpy(sBaseDevice.sBasicServerCluster.au8DateCode, "20150212", CLD_BAS_DATE_SIZE);
     FLib_MemCpy(sBaseDevice.sBasicServerCluster.au8SWBuildID, "1000-0001", CLD_BAS_SW_BUILD_SIZE);
-    #ifdef CLD_BAS_ATTR_MANUFACTURER_VERSION_DETAILS
-    FLib_MemCpy(sBaseDevice.sBasicServerCluster.au8ManufacturerVersionDetails, "Zigbee_Version_3.0", CLD_BAS_MANUFACTURER_VERSION_SIZE);
-    #endif
-    #ifdef CLD_BAS_ATTR_SERIAL_NUMBER
-    FLib_MemCpy(sBaseDevice.sBasicServerCluster.au8SerialNumber, "1234", CLD_BAS_SERIAL_NUMBER_SIZE);
-    #endif
-    #ifdef CLD_BAS_ATTR_PRODUCT_LABEL
-    FLib_MemCpy(sBaseDevice.sBasicServerCluster.au8ProductLabel, "Kinetis_KW41Z", CLD_BAS_PRODUCT_LABEL_SIZE);
-    #endif
+
+    sBaseDevice.sTemperatureMeasurementServerCluster.i16MeasuredValue = 0;
+    sBaseDevice.sTemperatureMeasurementServerCluster.i16MinMeasuredValue = 0;
+    sBaseDevice.sTemperatureMeasurementServerCluster.i16MaxMeasuredValue = 0;
+
+    sBaseDeviceTemperature.sOnOffServerCluster.bOnOff = FALSE;
+    FLib_MemCpy(sBaseDeviceTemperature.sBasicServerCluster.au8ManufacturerName, "NXP", CLD_BAS_MANUF_NAME_SIZE);
+    FLib_MemCpy(sBaseDeviceTemperature.sBasicServerCluster.au8ModelIdentifier, "BDB-Sw1", CLD_BAS_MODEL_ID_SIZE);
+    FLib_MemCpy(sBaseDeviceTemperature.sBasicServerCluster.au8DateCode, "20170310", CLD_BAS_DATE_SIZE);
+    FLib_MemCpy(sBaseDeviceTemperature.sBasicServerCluster.au8SWBuildID, "1000-0001", CLD_BAS_SW_BUILD_SIZE);
+
+    /*The default attribbute values for the temperature measurement clusters are initialized*/
+    sBaseDeviceTemperature.sTemperatureMeasurementServerCluster.i16MeasuredValue = 0;
+    sBaseDeviceTemperature.sTemperatureMeasurementServerCluster.i16MinMeasuredValue = 0;
+    sBaseDeviceTemperature.sTemperatureMeasurementServerCluster.i16MaxMeasuredValue = 0;
 }
 
 /****************************************************************************/
