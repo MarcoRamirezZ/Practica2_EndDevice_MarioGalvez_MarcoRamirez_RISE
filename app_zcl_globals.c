@@ -77,7 +77,7 @@ PRIVATE const PDUM_thAPdu s_ahEndpoint2InputClusterAPdus[6] = { apduZCL, apduZCL
 PRIVATE uint8 s_au8Endpoint2InputClusterDiscFlags[1] = { 0x1f };
 
 PRIVATE const uint16 s_au16Endpoint2OutputClusterList[5] = { 0x0000, 0x0004, 0x0003, 0x0006, HA_TEMPMEASUREMENT_CLUSTER_ID, };
-PRIVATE uint8 s_au8Endpoint2OutputClusterDiscFlags[1] = { 0x08 };
+PRIVATE uint8 s_au8Endpoint2OutputClusterDiscFlags[1] = { 0x18 };
 
 PUBLIC zps_tsAplAfSimpleDescCont s_asSimpleDescConts[3] =
 {
@@ -118,7 +118,7 @@ PUBLIC zps_tsAplAfSimpleDescCont s_asSimpleDescConts[3] =
 	       0x0104,
 	       0,
 	       1,
-	       1,
+	       2,
 	       6,
 	       5,
 		   (uint16*)s_au16Endpoint2InputClusterList,

@@ -666,10 +666,10 @@ PRIVATE void APP_vZCL_DeviceSpecific_Init(void)
     FLib_MemCpy(sBaseDeviceTemperature.sBasicServerCluster.au8DateCode, "20170310", CLD_BAS_DATE_SIZE);
     FLib_MemCpy(sBaseDeviceTemperature.sBasicServerCluster.au8SWBuildID, "1000-0001", CLD_BAS_SW_BUILD_SIZE);
 
-    /*The default attribbute values for the temperature measurement clusters are initialized*/
-    sBaseDeviceTemperature.sTemperatureMeasurementServerCluster.i16MeasuredValue = 0;
-    sBaseDeviceTemperature.sTemperatureMeasurementServerCluster.i16MinMeasuredValue = 0;
-    sBaseDeviceTemperature.sTemperatureMeasurementServerCluster.i16MaxMeasuredValue = 0;
+//    /*The default attribute values for the temperature measurement clusters are initialized*/
+//    sBaseDeviceTemperature.sTemperatureMeasurementServerCluster.i16MeasuredValue = 0;
+//    sBaseDeviceTemperature.sTemperatureMeasurementServerCluster.i16MinMeasuredValue = 0;
+//    sBaseDeviceTemperature.sTemperatureMeasurementServerCluster.i16MaxMeasuredValue = 0;
 }
 
 /****************************************************************************/

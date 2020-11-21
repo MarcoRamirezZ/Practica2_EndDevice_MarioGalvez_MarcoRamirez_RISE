@@ -165,6 +165,7 @@ void main_task (uint32_t parameter)
 
     while(1)
     {
+    	sBaseDeviceTemperature.sTemperatureMeasurementServerCluster.i16MeasuredValue = 100*BOARD_GetTemperature();
          /* place event handler code here... */
         DBG_vPrintf(FALSE, "APP: Entering zps_taskZPS\n");
         zps_taskZPS();
@@ -180,6 +181,7 @@ void main_task (uint32_t parameter)
 
         app_zb_shell_task();
 
+        BOARD_InitAdc();/* Temperature sensor works through ADC */
         /* Re-load the watch-dog timer. Execution must return through the idle
          * task before the CPU is suspended by the power manager. This ensures
          * that at least one task / ISR has executed with in the watchdog period
