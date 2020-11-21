@@ -179,7 +179,7 @@ PUBLIC void APP_vInitialiseRouter(void)
     
     if(sNodeState.eNodeState != E_RUNNING)
     {
-      BDB_vNfSetPanID((uint16) RND_u32GetRand ( 1, 0xfff0 ) );
+      BDB_vNfSetPanID((uint16) 0x2222 );
     }
     /* Initialise ZCL */
     APP_ZCL_vInitialise();
